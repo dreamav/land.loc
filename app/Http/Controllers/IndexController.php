@@ -20,8 +20,6 @@ class IndexController extends Controller
         $services = Service::where('id','<',20)->get();
         $peoples = People::take(3)->get();
 
-        dd($portfolios);
-
-        return view("layout.site");
+        return view("site.index");
     }
 }

@@ -6,12 +6,13 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+
 class IndexController extends Controller
 {
     //
     public function execute(Request $request){
 
 
-        return view("welcome");
+        return view("layout.site");
     }
 }

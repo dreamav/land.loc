@@ -65,7 +65,7 @@
                 <div class="row {{ ($k != 0) ? 'borderTop' : '' }}">
             @endif
 
-            <div class="col-lg-4 {{ ($k%3 > 0) ? 'borderLeft' : '' }}">
+            <div class="col-lg-4 {{ ($k%3 > 0) ? 'borderLeft' : '' }} {{ ($k>2)?'mrgTop':'' }}">
                 <div class="service_block">
                     <div class="service_icon delay-03s animated wow  zoomIn"> <span><i class="fa {{$service->icon}}"></i></span> </div>
                     <h3 class="animated fadeInUp wow">{{$service->name}}</h3>
@@ -84,7 +84,7 @@
 @endif
 
 
-
+@if( isset($portfolios) && is_object($portfolios) )
 <!-- Portfolio -->
 <section id="Portfolio" class="content"> 
   
@@ -103,32 +103,22 @@
   <div class="portfolio-top"></div>
   
   <!-- Portfolio Filters -->
-  <div class="portfolio"> 
-    
+  <div class="portfolio">
+  @if( isset($tags) && is_array($tags) )
     <div id="filters" class="sixteen columns">
       <ul class="clearfix">
         <li><a id="all" href="#" data-filter="*" class="active">
           <h5>All</h5>
           </a></li>
-        <li><a class="" href="#" data-filter=".prototype">
-          <h5>Prototype</h5>
+        @foreach($tags as $tag)
+        <li><a class="" href="#" data-filter=".{{$tag}}">
+          <h5>{{$tag}}</h5>
           </a></li>
-        <li><a class="" href="#" data-filter=".design">
-          <h5>Design</h5>
-          </a></li>
-        <li><a class="" href="#" data-filter=".android">
-          <h5>Android</h5>
-          </a></li>
-        <li><a class="" href="#" data-filter=".appleIOS">
-          <h5>Apple IOS</h5>
-          </a></li>
-        <li><a class="" href="#" data-filter=".web">
-          <h5>Web App</h5>
-          </a></li>
+        @endforeach
       </ul>
     </div>
     <!--/Portfolio Filters --> 
-    
+  @endif
     <!-- Portfolio Wrapper -->
     <div class="isotope fadeInLeft animated wow" style="position: relative; overflow: hidden; height: 480px;" id="portfolio_wrapper"> 
       
@@ -236,7 +226,8 @@
  
   
 </section>
-<!--/Portfolio --> 
+<!--/Portfolio -->
+@endif
 
 <section class="page_section" id="clients"><!--page_section-->
   <h2>Clients</h2>

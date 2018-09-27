@@ -37,9 +37,13 @@ class IndexController extends Controller
                 $admin_mail = env('MAIL_ADMIN');
 
                 $message->from($data['email'],$data['name']);
-                $message->to($admin_mail)->subject("Вопрос с формы в футере");
+                $message->to($admin_mail,'Для Админа')->subject("Вопрос с формы в футере");
 
             } );
+
+            if($result){
+                return redirect()->route('home')->with('status', "Email отправлен");
+            }
 
         }
 

@@ -19,7 +19,15 @@ class IndexController extends Controller
 
         if($request->isMethod('post')){
 
-
+            $messages = [
+                'required' => "Поле :attribute обязательно к заполнению",
+                'email' => "Введите email в поле :attribute!"
+            ];
+            $this->validate($request,[
+                'name'=>'required|max:255',
+                'email'=>'required|email',
+                'text'=>'required',
+            ], $messages);
 
         }
 

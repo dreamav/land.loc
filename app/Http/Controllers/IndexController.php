@@ -17,6 +17,12 @@ class IndexController extends Controller
     //
     public function execute(Request $request){
 
+        if($request->isMethod('post')){
+
+
+
+        }
+
         $pages = Page::all();
         $portfolios = Portfolio::get(['name','filter','images']);
         $services = Service::where('id','<',20)->get();

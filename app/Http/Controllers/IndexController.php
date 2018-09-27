@@ -10,6 +10,7 @@ use App\Service;
 use App\People;
 use App\Portfolio;
 use DB;
+use Mail;
 
 
 class IndexController extends Controller
@@ -28,6 +29,17 @@ class IndexController extends Controller
                 'email'=>'required|email',
                 'text'=>'required',
             ], $messages);
+
+            $data = $request->all(); // запишем в $data все поля из $request
+
+            $result = Mail::send( 'site.email', ['data'=>$data], function($message) use ($data) {
+
+                $admin_mail = env('MAIL_ADMIN');
+
+                $message->from($data['email'],$data['name']);
+                $message->to($admin_mail)->subject("Вопрос с формы в футере");
+
+            } );
 
         }
 

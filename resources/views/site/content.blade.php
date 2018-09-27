@@ -227,7 +227,7 @@
 				<div class="col-lg-8 wow fadeInLeft delay-06s">
 					<div class="form">
 
-					<form>
+					<form action="{{route("home")}}" method="post">
                         <input class="input-text" type="text" name="" value="Your Name *"
                                onFocus="if(this.value==this.defaultValue)this.value='';"
                                onBlur="if(this.value=='')this.value=this.defaultValue;"/>
@@ -238,6 +238,8 @@
                                onFocus="if(this.value==this.defaultValue)this.value='';"
                                onBlur="if(this.value=='')this.value=this.defaultValue;">Your Message *</textarea>
                         <input class="input-btn" type="submit" value="send message"/>
+
+                        {{csrf_field()}}
                     </form>
 
 					</div>

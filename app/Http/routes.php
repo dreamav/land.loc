@@ -24,6 +24,12 @@ Route::group(["prefix"=>"admin","middleware"=>"auth"],function (){
     // admin/ главная стр админки
     Route::get('/',function (){
 
+        if(view()->exists('admin.index')){
+            $data = ['title'=>"Панель администратора"];
+
+            return view('admin.index', $data);
+        }
+
     });
     // admin/pages и тут манипуляции со страницами
     Route::group(["prefix"=>"pages"], function (){
@@ -56,3 +62,6 @@ Route::group(["prefix"=>"admin","middleware"=>"auth"],function (){
         Route::match(["get","post","delete"],"/edit/{service}",["uses"=>"ServiceEditController@execute","as"=>"serviceEdit"]);
     });
 });
+Route::auth();
+
+Route::get('/home', 'HomeController@index');

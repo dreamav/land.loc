@@ -18,7 +18,8 @@ class PageController extends Controller
 
         if(view()->exists('site.page')){
 
-            $page = Page::where('alias','like',"%$alias")->first();
+            // $page = Page::where('alias','like',"%$alias")->first();
+            $page = Page::where('alias',$alias)->first();
 
             $data = [
                 'title' => $page->name,

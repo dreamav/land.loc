@@ -31,16 +31,17 @@ Route::group(["prefix"=>"admin","middleware"=>"auth"],function (){
         }
 
     });
-    // admin/pages и тут манипуляции со страницами
+
     Route::group(["prefix"=>"pages"], function (){
-        // главная страница
+
         Route::get("/",["uses"=>"PagesController@execute","as"=>"pages"]);
-        // get показываем форму добавления новой страницы
-        // post сохраняем данные с формы
+
         Route::match(["get","post"],"/add",["uses"=>"PagesAddController@execute","as"=>"pagesAdd"]);
-        // admin/pages/edit/{page}
+
         Route::match(["get","post","delete"],"/edit/{page}",["uses"=>"PagesEditController@execute","as"=>"pagesEdit"]);
+
     });
+    
     // admin/portfolio и тут манипуляции со страницами
     Route::group(["prefix"=>"portfolio"], function (){
         // главная страница

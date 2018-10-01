@@ -15,6 +15,10 @@
     <script src="{{asset('assets/js/html5shiv.js')}}"></script>
     <script src="{{asset('assets/js/html5element.js')}}"></script>
 <![endif]-->
+
+<script type="text/javascript" src="{{asset('assets/js/jquery-1.11.0.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/js/ckeditor/ckeditor.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/js/bootstrap.min.js')}}"></script>
  
 </head>
 <body>

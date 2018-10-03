@@ -1,7 +1,7 @@
 <div style="margin: 0px 50px">
 
 	@if($pages)
-	<table>
+	<table class="table table-hover table-striped">
 
 		<thead>
 			<tr>
@@ -23,6 +23,12 @@
 				<td>{{ $page->alias }}</td>
 				<td>{{ $page->text }}</td>
 				<td>{{ $page->created_at }}</td>
+                <td>
+                    {!! Form::open(['url'=>route('pagesEdit',['page'=>$page->id]), 'class'=>'form-horizontal', 'type'=> 'post']) !!}
+                        {!! Form::hidden('action','type') !!}
+                        {!! Form::button('Удалить',['class'=>'btn btn-danger','type'=>'submit']) !!}
+                    {!! Form::close() !!}
+                </td>
 			</tr>
 
 		@endforeach

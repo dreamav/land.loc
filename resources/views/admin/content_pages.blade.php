@@ -36,6 +36,8 @@
 		</tbody>
 	</table>
 
+        {!! Html::link( route('pagesAdd'), 'Новая страница' ) !!}
+
 	@endif
 
 </div>

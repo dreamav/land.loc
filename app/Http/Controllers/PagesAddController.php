@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Validator;
 
 class PagesAddController extends Controller
 {
@@ -13,6 +15,15 @@ class PagesAddController extends Controller
         if( $request->isMethod('post') ){
             $input = $request->except('_token');
 
+            $validator = Validator::make($input,[
+                'name' => 'required|max:255',
+                'alias' => 'required|unique:pages|max:255',
+                'text' => 'required'
+            ]);
+
+            if($validator->fails()){
+                return redirect()->route('pagesAdd')->withErrors($validator)->withInput();
+            }
         }
 
         if (view()->exists('admin.pages_add')){

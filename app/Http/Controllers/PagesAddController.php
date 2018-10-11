@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Page;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -28,6 +29,13 @@ class PagesAddController extends Controller
             if($request->hasFile('images')){
                 $file = $request->file('images');
                 $input['images'] = $file->getClientOriginalName();
+                $file->move(public_path().'/assets/img/',$input['images'] );
+            }
+
+            $page = new Page();
+            $page->fill($input);
+            if($page->save()){
+                return redirect('admin')->with('status','Страница добавлена');
             }
         }
 

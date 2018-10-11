@@ -16,11 +16,16 @@ class PagesAddController extends Controller
         if( $request->isMethod('post') ){
             $input = $request->except('_token');
 
+            $messages = [
+                'required' => 'Поле :attribute обязательно для заполнения',
+                'unique' => 'Поле :attribute уже есть в БД, должно быть уникальным!'
+            ];
+
             $validator = Validator::make($input,[
                 'name' => 'required|max:255',
                 'alias' => 'required|unique:pages|max:255',
                 'text' => 'required'
-            ]);
+            ],$messages);
 
             if($validator->fails()){
                 return redirect()->route('pagesAdd')->withErrors($validator)->withInput();

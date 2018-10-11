@@ -10,6 +10,11 @@ class PagesAddController extends Controller
 {
     public function execute(Request $request){
 
+        if( $request->isMethod('post') ){
+            $input = $request->except('_token');
+
+        }
+
         if (view()->exists('admin.pages_add')){
             $data = [
                 'title' => 'Новая страница'

@@ -25,7 +25,7 @@
 				<td>{{ $page->created_at }}</td>
                 <td>
                     {!! Form::open(['url'=>route('pagesEdit',['page'=>$page->id]), 'class'=>'form-horizontal', 'type'=> 'post']) !!}
-                        {!! Form::hidden('action','type') !!}
+                        {!! Form::hidden('action','delete') !!}
                         {!! Form::button('Удалить',['class'=>'btn btn-danger','type'=>'submit']) !!}
                     {!! Form::close() !!}
                 </td>

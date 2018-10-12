@@ -9,9 +9,7 @@ use App\Http\Requests;
 
 class PagesEditController extends Controller
 {
-    public function execute($id){
-        $page = Page::find($id);
-
+    public function execute(Page $page, Request $request){
         dd($page);
     }
 }

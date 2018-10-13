@@ -27,6 +27,18 @@ class PagesEditController extends Controller
                         ->route('pagesEdit',['pages'=>$input['id']])
                         ->withErrors($validator);
             }
+
+            if( $request->hasFile('images') ){
+                $file = $request->file('images');
+                $file->move(public_path().'/assets/img/',$file->getClientOriginalName());
+                $input['images'] = $file->getClientOriginalName();
+            } else {
+                $input['images'] = $input['old_images'];
+            }
+
+            unset($input['old_images']);
+
+
         }
 
         $old = $page->toArray();

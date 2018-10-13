@@ -41,7 +41,7 @@ class PagesEditController extends Controller
             $page->fill($input);
 
             if( $page->update() ){
-                return redirect('admin')->with('status','Страница обновлена');
+                return redirect()->route('pagesEdit',['pages'=>$input['id']])->with('status','Страница обновлена');
             }
         }
 

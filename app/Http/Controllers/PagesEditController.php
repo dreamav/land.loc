@@ -18,7 +18,7 @@ class PagesEditController extends Controller
 
             $validator = Validator::make($input,[
                 'name'=>'required|max:255',
-                'alias'=>'required|max:255|unique:pages',
+                'alias'=>'required|max:255|unique:pages,alias,'.$input['id'],
                 'text'=>'required',
             ]);
 
@@ -38,7 +38,11 @@ class PagesEditController extends Controller
 
             unset($input['old_images']);
 
+            $page->fill($input);
 
+            if( $page->update() ){
+                return redirect('admin')->with('status','Страница обновлена');
+            }
         }
 
         $old = $page->toArray();
